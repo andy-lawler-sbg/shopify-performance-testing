@@ -1,16 +1,17 @@
 import React, {useCallback, useEffect} from 'react';
-
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-
 import {
   RenderPassReport,
   PerformanceProfiler,
   LogLevel,
   useProfilerState,
 } from '@shopify/react-native-performance';
+import {isPerformanceLoggingEnabled} from './utils/fastFeatureSwitches';
 
 /*
+  READ HERE :)
+
   Uncomment the import and code to run each test. Be sure to comment the other test/imports before restarting the app.
 
   1. Tests the app startup time, since homescreen is rendered first we wrap that in a PerformanceMeasureView
@@ -18,16 +19,17 @@ import {
   3. TBC - Can test loading state -> loaded state times
 */
 
+/* 1 */
+
 // import {HomeScreen as HomeScreenAppStartupTest} from './Components/HomeScreen/HomeScreenTestingAppStartRender';
 // import {MessagesScreen as MessagesScreenNoTests} from './Components/MessagesScreen/MessagesScreenNoTests';
+
+/* 2 */
 
 import {HomeScreen as HomeScreenTestingMessages} from './Components/HomeScreen/HomeScreenTestingMessagesRender';
 import MessagesScreenTestingRender from './Components/MessagesScreen/MessagesScreenTestingRenderTime';
 
 const Stack = createNativeStackNavigator();
-
-// Toggle to disable performance logging completely.
-const isEnabled = true;
 
 const App = () => {
   const state = useProfilerState({});
@@ -37,14 +39,13 @@ const App = () => {
     [],
   );
 
-  useEffect(() => {
-    // Log's additional profiler state to the console.
-    console.log('State:', JSON.stringify(state));
-  }, [state]);
-
   const errorHandler = useCallback((error: Error) => {
     console.log(`Error: ${error}`);
   }, []);
+
+  useEffect(() => {
+    console.log('State:', JSON.stringify(state));
+  }, [state]);
 
   return (
     <PerformanceProfiler
@@ -52,13 +53,13 @@ const App = () => {
       onReportPrepared={onReportPrepared}
       useRenderTimeouts
       errorHandler={errorHandler}
-      enabled={isEnabled}>
+      enabled={isPerformanceLoggingEnabled}>
       <NavigationContainer>
         <Stack.Navigator>
-          {/* Test 1 */}
+          {/* 1 */}
           {/* <Stack.Screen name="Home" component={HomeScreenAppStartupTest} />
           <Stack.Screen name="Messages" component={MessagesScreenNoTests} /> */}
-          {/* Test 2 */}
+          {/* 2 */}
           <Stack.Screen name="Home" component={HomeScreenTestingMessages} />
           <Stack.Screen
             name="Messages"
