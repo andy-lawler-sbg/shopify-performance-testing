@@ -18,16 +18,16 @@ import {
   3. TBC - Can test loading state -> loaded state times
 */
 
-import {HomeScreen as HomeScreenAppStartupTest} from './Components/HomeScreen/HomeScreenTestingAppStartRender';
-import {MessagesScreen as MessagesScreenNoTests} from './Components/MessagesScreen/MessagesScreenNoTests';
+// import {HomeScreen as HomeScreenAppStartupTest} from './Components/HomeScreen/HomeScreenTestingAppStartRender';
+// import {MessagesScreen as MessagesScreenNoTests} from './Components/MessagesScreen/MessagesScreenNoTests';
 
-// import {HomeScreen as HomeScreenTestingMessages} from './Components/HomeScreen/HomeScreenTestingMessagesRender';
-// import {MessagesScreen as MessagesScreenTestingRender} from './Components/MessagesScreen/MessagesScreenTestingRenderTime';
+import {HomeScreen as HomeScreenTestingMessages} from './Components/HomeScreen/HomeScreenTestingMessagesRender';
+import MessagesScreenTestingRender from './Components/MessagesScreen/MessagesScreenTestingRenderTime';
 
 const Stack = createNativeStackNavigator();
 
 // Toggle to disable performance logging completely.
-const isEnabled = false;
+const isEnabled = true;
 
 const App = () => {
   const state = useProfilerState({});
@@ -56,14 +56,14 @@ const App = () => {
       <NavigationContainer>
         <Stack.Navigator>
           {/* Test 1 */}
-          <Stack.Screen name="Home" component={HomeScreenAppStartupTest} />
-          <Stack.Screen name="Messages" component={MessagesScreenNoTests} />
+          {/* <Stack.Screen name="Home" component={HomeScreenAppStartupTest} />
+          <Stack.Screen name="Messages" component={MessagesScreenNoTests} /> */}
           {/* Test 2 */}
-          {/* <Stack.Screen name="Home" component={HomeScreenTestingMessages} />
+          <Stack.Screen name="Home" component={HomeScreenTestingMessages} />
           <Stack.Screen
             name="Messages"
             component={MessagesScreenTestingRender}
-          /> */}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </PerformanceProfiler>
