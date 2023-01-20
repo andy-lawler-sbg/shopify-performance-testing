@@ -8,6 +8,8 @@ import styles from '../../Styles/GenericStyles';
   We then have to use the `PerformanceMeasureView` within the MessagesScreen.
 */
 
+/** Todo: find a way to segment the useStartProfiler and onPress logic into a new hook */
+
 export const HomeScreen = (props: {navigation: any}) => {
   const startNavigationTTITimer = useStartProfiler();
   return (

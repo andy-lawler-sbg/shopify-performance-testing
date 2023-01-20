@@ -1,7 +1,6 @@
 import React from 'react';
 import {Text, View, Button} from 'react-native';
 import styles from '../../Styles/GenericStyles';
-
 import {withPerformance} from '../PerformanceWrappers/PerformanceWrapper';
 
 /*
@@ -9,7 +8,9 @@ import {withPerformance} from '../PerformanceWrappers/PerformanceWrapper';
   a report will be created showing the app first render time.
 */
 
-export const HomeScreen = (props: {navigation: any}) => (
+export const HomeScreen = (props: {
+  navigation: {navigate: (route: string) => void};
+}) => (
   <View style={styles.container}>
     <Text>Home Screen</Text>
     <Button
