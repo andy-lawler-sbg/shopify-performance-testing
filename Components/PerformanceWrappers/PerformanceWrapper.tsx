@@ -1,10 +1,6 @@
 import React from 'react';
 import {PerformanceMeasureView} from '@shopify/react-native-performance';
-
-type PerformanceProps = {
-  interactive?: boolean;
-  screenName: string;
-};
+import {PerformanceProps} from './PerformanceWrapper.types';
 
 export function withPerformance<T extends object>(
   Component: React.ComponentType<T>,
